@@ -10,7 +10,7 @@ namespace Domain.NadinSoft.Model
     public class Product
     {
         public Product() { }
-        public Product(string name, DateTime produceDate, string manufacturePhone, string manufactureEmail, bool isAvailable/*, Guid userId*/)
+        public Product(string name, DateTime produceDate, string manufacturePhone, string manufactureEmail, bool isAvailable, string userId)
         {
             Id = Guid.NewGuid();
             Name = name;
@@ -18,7 +18,7 @@ namespace Domain.NadinSoft.Model
             ManufacturePhone = manufacturePhone;
             ManufactureEmail = manufactureEmail;
             IsAvailable = isAvailable;
-            //CreatedByUserId = userId;
+            CreatedByUserId = userId;
         }
 
         public Guid Id { get; private set; }
@@ -28,8 +28,8 @@ namespace Domain.NadinSoft.Model
         public string ManufactureEmail { get; private set; }
         public bool IsAvailable { get; private set; }
 
-        //public Guid CreatedByUserId { get; private set; }
-        //public User user { get; private set; }
+        public string CreatedByUserId { get; private set; }
+        public ApplicationUser CreatedByUser { get; private set; }
     }
 }
 

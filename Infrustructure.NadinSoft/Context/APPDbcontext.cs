@@ -1,20 +1,16 @@
 ﻿using Domain.NadinSoft.Model;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrustructure.NadinSoft.Context
 {
-    public class APPDbcontext : DbContext
+    public class APPDbcontext : IdentityDbContext<ApplicationUser>
     {
         protected APPDbcontext()
         {
         }
-        public APPDbcontext(DbContextOptions<APPDbcontext> options) : base(options)
+        public APPDbcontext(DbContextOptions<APPDbcontext> options)
+            : base(options)
         {
         }
 
@@ -39,7 +35,16 @@ namespace Infrustructure.NadinSoft.Context
                 entity.HasIndex(p => new { p.ManufactureEmail, p.ProduceDate })
                 .IsUnique();
 
+                entity.HasOne(p => p.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(p => p.CreatedByUserId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
 
+            modelBuilder.Entity<ApplicationUser>(entity =>
+            {
+                entity.Property(p => p.Nationalcode)
+                .IsRequired().HasMaxLength(10);
             });
         }
     }
