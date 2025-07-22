@@ -2,6 +2,7 @@
 using Application.NadinSoft.DTO;
 using Mapster;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,10 +18,21 @@ namespace NadinSoftTaskZomorodian.Controllers
         {
             _mediator = mediator;
         }
+        
         [HttpPost("Register User")]
         public async Task<IActionResult> RegisterUser([FromBody] RegisterUserDTO dto)
         {
             var command = dto.Adapt<RegisterUserCommand>();
+
+            var result = await _mediator.Send(command);
+
+            return Ok(result);
+        }
+
+        [HttpGet("Login User")]
+        public async Task<IActionResult> LoginUser([FromBody] LoginUserDTO dto)
+        {
+            var command = dto.Adapt<LoginUserCommand>();
 
             var result = await _mediator.Send(command);
 
