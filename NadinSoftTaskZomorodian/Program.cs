@@ -1,6 +1,12 @@
 ﻿
+using Application.NadinSoft.Command;
+using Application.NadinSoft.CommandHandler;
+using Domain.NadinSoft.Interface;
 using Domain.NadinSoft.Model;
 using Infrustructure.NadinSoft.Context;
+using Infrustructure.NadinSoft.Repository;
+using Mapster;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -51,6 +57,15 @@ namespace NadinSoftTaskZomorodian
             });
 
             builder.Services.AddAuthorization();
+
+            // DI Mapster
+            builder.Services.AddMapster();
+            // ثبت MediatR
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(RegisterUserCommandHandler).Assembly));
+            // Command and commandHandler
+            builder.Services.AddScoped<IRequestHandler<RegisterUserCommand, string>, RegisterUserCommandHandler>();
+            // Repository
+            builder.Services.AddScoped(typeof(ICrudRepository<>), typeof(CrudRepository<>));
             //------------------------
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
