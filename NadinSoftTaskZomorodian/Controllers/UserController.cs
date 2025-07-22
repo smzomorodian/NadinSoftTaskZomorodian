@@ -1,0 +1,30 @@
+﻿using Application.NadinSoft.Command;
+using Application.NadinSoft.DTO;
+using Mapster;
+using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace NadinSoftTaskZomorodian.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UserController : ControllerBase
+    {
+        private readonly IMediator _mediator;
+
+        public UserController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+        [HttpPost("Register User")]
+        public async Task<IActionResult> RegisterUser([FromBody] RegisterUserDTO dto)
+        {
+            var command = dto.Adapt<RegisterUserCommand>();
+
+            var result = await _mediator.Send(command);
+
+            return Ok(result);
+        }
+    }
+}

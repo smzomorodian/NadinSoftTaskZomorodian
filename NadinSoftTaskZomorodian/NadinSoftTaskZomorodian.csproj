@@ -25,10 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Application.NadinSoft\Application.NadinSoft.csproj" />
     <ProjectReference Include="..\Infrustructure.NadinSoft\Infrustructure.NadinSoft.csproj" />
   </ItemGroup>
