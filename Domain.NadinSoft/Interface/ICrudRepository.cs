@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Domain.NadinSoft.Interface
 {
-    public interface ICrudRepository
+    public interface ICrudRepository<T> where T : class
     {
-        Task<IEnumerable<Product>> GetAll();
-        Task<string> Add(Product product);
-        Task<bool> Update(Product product);
-        Task<bool> Deleted(Product product);
-        Task<bool> SaveChange();
+        Task<IEnumerable<T>> GetAll();
+        Task<string> Add(T enttity);
+        Task<bool> Update(T enttity);
+        Task<bool> Deleted(T enttity);
+        Task SaveChange();
     }
 }
