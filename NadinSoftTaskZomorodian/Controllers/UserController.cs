@@ -1,4 +1,4 @@
-﻿using Application.NadinSoft.Command;
+﻿using Application.NadinSoft.Command.User;
 using Application.NadinSoft.DTO;
 using Mapster;
 using MediatR;

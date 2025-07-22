@@ -1,4 +1,4 @@
-﻿using Application.NadinSoft.Command;
+﻿using Application.NadinSoft.Command.User;
 using FluentValidation;
 using System;
 using System.Collections.Generic;

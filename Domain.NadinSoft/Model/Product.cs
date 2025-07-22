@@ -29,7 +29,6 @@ namespace Domain.NadinSoft.Model
         public bool IsAvailable { get; private set; }
 
         public string CreatedByUserId { get; private set; }
-        public ApplicationUser CreatedByUser { get; private set; }
     }
 }
 

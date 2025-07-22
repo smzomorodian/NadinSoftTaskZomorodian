@@ -1,4 +1,4 @@
-﻿using Application.NadinSoft.Command;
+﻿using Application.NadinSoft.Command.User;
 using Domain.NadinSoft.Interface;
 using Domain.NadinSoft.Model;
 using MapsterMapper;
@@ -14,7 +14,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.NadinSoft.CommandHandler
+namespace Application.NadinSoft.CommandHandler.UserCommandHandler
 {
     class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, string>
     {

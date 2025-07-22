@@ -35,8 +35,8 @@ namespace Infrustructure.NadinSoft.Context
                 entity.HasIndex(p => new { p.ManufactureEmail, p.ProduceDate })
                 .IsUnique();
 
-                entity.HasOne(p => p.CreatedByUser)
-                    .WithMany()
+                entity.HasOne<ApplicationUser>()
+                    .WithMany(u => u.Products)
                     .HasForeignKey(p => p.CreatedByUserId)
                     .OnDelete(DeleteBehavior.Restrict);
             });

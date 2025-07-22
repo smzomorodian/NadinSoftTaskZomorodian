@@ -1,7 +1,9 @@
 ﻿
 using Application.NadinSoft.Behaviors;
-using Application.NadinSoft.Command;
-using Application.NadinSoft.CommandHandler;
+using Application.NadinSoft.Command.ProductCommand;
+using Application.NadinSoft.Command.User;
+using Application.NadinSoft.CommandHandler.ProductCommandHandler;
+using Application.NadinSoft.CommandHandler.UserCommandHandler;
 using Application.NadinSoft.Validators;
 using Domain.NadinSoft.Interface;
 using Domain.NadinSoft.Model;
@@ -78,8 +80,11 @@ namespace NadinSoftTaskZomorodian
             builder.Services.AddMapster();
             // ثبت MediatR
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(RegisterUserCommandHandler).Assembly));
+
             // Command and commandHandler
             builder.Services.AddScoped<IRequestHandler<RegisterUserCommand, string>, RegisterUserCommandHandler>();
+            //builder.Services.AddScoped<IRequestHandler<LoginUserCommand, string>, LoginUserCommandHandler>();
+            builder.Services.AddScoped<IRequestHandler<AddProductCommand, string>, LoginUserCommandHandler>();
             // Repository
             builder.Services.AddScoped(typeof(ICrudRepository<>), typeof(CrudRepository<>));
             builder.Services.AddScoped<IGeTUserWhitByRepository, GeTUserWhitByRepository>();

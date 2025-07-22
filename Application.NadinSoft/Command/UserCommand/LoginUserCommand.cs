@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.NadinSoft.Command
+namespace Application.NadinSoft.Command.User
 {
     public class LoginUserCommand : IRequest<string>
     {

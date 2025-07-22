@@ -1,4 +1,4 @@
-﻿using Application.NadinSoft.Command;
+﻿using Application.NadinSoft.Command.User;
 using Domain.NadinSoft.Interface;
 using Domain.NadinSoft.Model;
 using MapsterMapper;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.NadinSoft.CommandHandler
+namespace Application.NadinSoft.CommandHandler.UserCommandHandler
 {
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, string>
     {
