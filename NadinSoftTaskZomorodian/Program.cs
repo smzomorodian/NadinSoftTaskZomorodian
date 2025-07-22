@@ -1,9 +1,13 @@
 ﻿
+using Application.NadinSoft.Behaviors;
 using Application.NadinSoft.Command;
 using Application.NadinSoft.CommandHandler;
+using Application.NadinSoft.Validators;
 using Domain.NadinSoft.Interface;
 using Domain.NadinSoft.Model;
+using FluentValidation;
 using Infrustructure.NadinSoft.Context;
+using Infrustructure.NadinSoft.Middlewares;
 using Infrustructure.NadinSoft.Repository;
 using Mapster;
 using MediatR;
@@ -66,6 +70,14 @@ namespace NadinSoftTaskZomorodian
             builder.Services.AddScoped<IRequestHandler<RegisterUserCommand, string>, RegisterUserCommandHandler>();
             // Repository
             builder.Services.AddScoped(typeof(ICrudRepository<>), typeof(CrudRepository<>));
+
+            builder.Services.AddValidatorsFromAssemblyContaining<RegisterUserCommandValidator>();
+
+            // ثبت Validatorها
+            builder.Services.AddValidatorsFromAssemblyContaining<RegisterUserCommandValidator>();
+
+            // ثبت Behavior برای اعتبارسنجی خودکار
+            builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             //------------------------
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -81,7 +93,7 @@ namespace NadinSoftTaskZomorodian
             }
 
             app.UseHttpsRedirection();
-
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
             app.UseAuthentication();
             app.UseAuthorization();
 

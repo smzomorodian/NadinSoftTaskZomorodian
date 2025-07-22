@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application.NadinSoft\Application.NadinSoft.csproj" />
     <ProjectReference Include="..\Domain.NadinSoft\Domain.NadinSoft.csproj" />
   </ItemGroup>
 
