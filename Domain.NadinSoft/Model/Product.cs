@@ -29,6 +29,15 @@ namespace Domain.NadinSoft.Model
         public bool IsAvailable { get; private set; }
 
         public string CreatedByUserId { get; private set; }
+
+        public void Update(string name, DateTime produceDate, string phone, string email, bool isAvailable)
+        {
+            Name = name;
+            ProduceDate = produceDate;
+            ManufacturePhone = phone;
+            ManufactureEmail = email;
+            IsAvailable = isAvailable;
+        }
     }
 }
 

@@ -18,6 +18,7 @@ namespace Application.NadinSoft.CommandHandler.ProductCommandHandler
         private readonly ICrudRepository<Product> _crudRepository;
         private readonly IGetProductRepository _getProductRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
+
         public DeletedProductCommandHandler(ICrudRepository<Product> crudRepository, IHttpContextAccessor httpContextAccessor, IGetProductRepository getProductRepository)
         {
             _crudRepository = crudRepository;

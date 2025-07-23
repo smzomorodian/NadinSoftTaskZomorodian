@@ -47,5 +47,14 @@ namespace NadinSoftTaskZomorodian.Controllers
             var result = await _mediator.Send(command);
             return Ok(result);
         }
+
+        //[Authorize]
+        [HttpPut("Update_information_Product")]
+        public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductDTO updateProductDTO)
+        {
+            var command = updateProductDTO.Adapt<UpdateProductCommand>();
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
     }
 }
