@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.NadinSoft.DTO
+namespace Application.NadinSoft.DTO.ProductDTO
 {
     public class AddProductDTO
     {

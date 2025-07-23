@@ -1,5 +1,5 @@
 ﻿using Application.NadinSoft.Command.User;
-using Application.NadinSoft.DTO;
+using Application.NadinSoft.DTO.UserDTO;
 using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

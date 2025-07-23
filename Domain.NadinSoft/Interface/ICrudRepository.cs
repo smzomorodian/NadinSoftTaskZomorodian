@@ -9,7 +9,7 @@ namespace Domain.NadinSoft.Interface
 {
     public interface ICrudRepository<T> where T : class
     {
-        Task<IEnumerable<T>> GetAll();
+        Task<List<T>> GetAll();
         Task<string> Add(T enttity);
         Task<bool> Update(T enttity);
         Task<bool> Deleted(T enttity);

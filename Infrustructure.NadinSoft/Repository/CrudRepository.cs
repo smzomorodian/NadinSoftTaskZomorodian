@@ -1,12 +1,7 @@
 ﻿using Domain.NadinSoft.Interface;
-using Domain.NadinSoft.Model;
 using Infrustructure.NadinSoft.Context;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Infrustructure.NadinSoft.Repository
 {
@@ -31,7 +26,7 @@ namespace Infrustructure.NadinSoft.Repository
             return await Task.FromResult(true);
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<List<T>> GetAll()
         {
             return await _aPPDbcontext.Set<T>().ToListAsync();
         }

@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace Application.NadinSoft.CommandHandler.ProductCommandHandler
 {
-    public class LoginUserCommandHandler : IRequestHandler<AddProductCommand, string>
+    public class AddProductCommandHandler : IRequestHandler<AddProductCommand, string>
     {
         private ICrudRepository<Product> _crudRepository;
         private readonly IMapper _mapper;
 
-        public LoginUserCommandHandler(ICrudRepository<Product> crudRepository, IMapper mapper)
+        public AddProductCommandHandler(ICrudRepository<Product> crudRepository, IMapper mapper)
         {
             _crudRepository = crudRepository;
             _mapper = mapper;

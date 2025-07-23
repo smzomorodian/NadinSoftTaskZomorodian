@@ -1,9 +1,8 @@
 ﻿using Application.NadinSoft.Command.ProductCommand;
-using Application.NadinSoft.DTO;
+using Application.NadinSoft.DTO.ProductDTO;
+using Application.NadinSoft.Query;
 using Mapster;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace NadinSoftTaskZomorodian.Controllers
@@ -17,8 +16,23 @@ namespace NadinSoftTaskZomorodian.Controllers
         {
             _mediator = mediator;
         }
-        [Authorize]
-        [HttpPost ("Add product")]
+        [HttpGet("All_Product")]
+        public async Task<IActionResult> GEtAllProduct()
+        {
+            var result = await _mediator.Send(new ShowAllProductQuery());
+            return Ok(result);
+        }
+
+        [HttpGet("Get_Product_whitUserId")]
+        public async Task<IActionResult> GeProductwhitUserId(string UserId)
+        {
+            var command = new ShowProductWhitUserIdQuery { UserId = UserId };
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        //[Authorize]
+        [HttpPost("Add_product")]
         public async Task<IActionResult> AddProduct([FromBody] AddProductDTO addProductDTO)
         {
             var command = addProductDTO.Adapt<AddProductCommand>();

@@ -4,6 +4,8 @@ using Application.NadinSoft.Command.ProductCommand;
 using Application.NadinSoft.Command.User;
 using Application.NadinSoft.CommandHandler.ProductCommandHandler;
 using Application.NadinSoft.CommandHandler.UserCommandHandler;
+using Application.NadinSoft.Query;
+using Application.NadinSoft.QueryHandler;
 using Application.NadinSoft.Validators;
 using Domain.NadinSoft.Interface;
 using Domain.NadinSoft.Model;
@@ -84,10 +86,14 @@ namespace NadinSoftTaskZomorodian
             // Command and commandHandler
             builder.Services.AddScoped<IRequestHandler<RegisterUserCommand, string>, RegisterUserCommandHandler>();
             //builder.Services.AddScoped<IRequestHandler<LoginUserCommand, string>, LoginUserCommandHandler>();
-            builder.Services.AddScoped<IRequestHandler<AddProductCommand, string>, LoginUserCommandHandler>();
+            builder.Services.AddScoped<IRequestHandler<AddProductCommand, string>, AddProductCommandHandler>();
+            builder.Services.AddScoped<IRequestHandler<ShowAllProductQuery, List<Product>>, ShowAllProductQueryHandler>();
+            builder.Services.AddScoped<IRequestHandler<ShowProductWhitUserIdQuery, List<Product>>, ShowProductWhitUserIdQueryHandler>();
+
             // Repository
             builder.Services.AddScoped(typeof(ICrudRepository<>), typeof(CrudRepository<>));
             builder.Services.AddScoped<IGeTUserWhitByRepository, GeTUserWhitByRepository>();
+            builder.Services.AddScoped<IGetProductWhitUserIdRepository, GetProductWhitUserIdRepository>();
 
             builder.Services.AddValidatorsFromAssemblyContaining<RegisterUserCommandValidator>();
 
