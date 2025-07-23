@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Application.NadinSoft.Validators
 {
-    public class UpdateProductCommandValidation : AbstractValidator<UpdateProductCommand>
+    public class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
     {
-        public UpdateProductCommandValidation()
+        public UpdateProductCommandValidator()
         {
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage("نام نمی تواند خالی باشد.")
@@ -28,8 +28,6 @@ namespace Application.NadinSoft.Validators
             RuleFor(x => x.ProduceDate)
                 .NotEmpty().WithMessage("تاریخ تولید الزامی است.")
                 .LessThanOrEqualTo(DateTime.Now).WithMessage("تاریخ تولید نمی‌تواند در آینده باشد.");
-
-
         }
     }
 }
