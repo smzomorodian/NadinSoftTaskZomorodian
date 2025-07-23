@@ -3,6 +3,7 @@ using Application.NadinSoft.DTO.ProductDTO;
 using Application.NadinSoft.Query;
 using Mapster;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace NadinSoftTaskZomorodian.Controllers
@@ -31,7 +32,7 @@ namespace NadinSoftTaskZomorodian.Controllers
             return Ok(result);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost("Add_product")]
         public async Task<IActionResult> AddProduct([FromBody] AddProductDTO addProductDTO)
         {
@@ -39,7 +40,7 @@ namespace NadinSoftTaskZomorodian.Controllers
             var result = await _mediator.Send(command);
             return Ok(result);
         }
-        //[Authorize]
+        [Authorize]
         [HttpDelete("Delete_Product")]
         public async Task<IActionResult> DeleteProduct([FromQuery] DeletedProductDTO deletedProductDTO)
         {
@@ -48,7 +49,7 @@ namespace NadinSoftTaskZomorodian.Controllers
             return Ok(result);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPut("Update_information_Product")]
         public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductDTO updateProductDTO)
         {

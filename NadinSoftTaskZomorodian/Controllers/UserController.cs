@@ -29,7 +29,7 @@ namespace NadinSoftTaskZomorodian.Controllers
             return Ok(result);
         }
 
-        [HttpGet("Login User")]
+        [HttpPost("Login User")]
         public async Task<IActionResult> LoginUser([FromBody] LoginUserDTO dto)
         {
             var command = dto.Adapt<LoginUserCommand>();

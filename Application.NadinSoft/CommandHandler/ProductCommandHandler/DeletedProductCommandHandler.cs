@@ -29,14 +29,14 @@ namespace Application.NadinSoft.CommandHandler.ProductCommandHandler
 
         public async Task<bool> Handle(DeletedProductCommand request, CancellationToken cancellationToken)
         {
-            var currentUserId = _httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            //var currentUserId = _httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             var product = await _getProductRepository.GetproductswhitProductId(request.ProductId);
             if (product == null)
                 return false;
 
-            if (product.CreatedByUserId != currentUserId)
-                return false;
+            //if (product.CreatedByUserId != currentUserId)
+            //    return false;
 
             await _crudRepository.Deleted(product);
             await _crudRepository.SaveChange();

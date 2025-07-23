@@ -10,5 +10,6 @@ namespace Domain.NadinSoft.Interface
     public interface IGeTUserWhitByRepository
     {
         Task<ApplicationUser> GetByNationalCode(string nationalCode);
+        Task<ApplicationUser> GetById(string UserId);
     }
 }

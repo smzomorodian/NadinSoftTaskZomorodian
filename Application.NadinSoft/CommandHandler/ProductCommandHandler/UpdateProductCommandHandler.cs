@@ -30,13 +30,13 @@ namespace Application.NadinSoft.CommandHandler.ProductCommandHandler
         public async Task<string> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
             
-            var currentUserId = _httpContextAccessor.HttpContext?.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+           // var currentUserId = _httpContextAccessor.HttpContext?.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
             var existingProduct = await _getProductRepository.GetproductswhitProductId(request.ProductId);
             if (existingProduct == null)
                 return "محصولی با این شناسه یافت نشد";
 
-            if (existingProduct.CreatedByUserId != currentUserId)
-                return "شما مجاز به ویرایش این محصول نیستید";
+            //if (existingProduct.CreatedByUserId != currentUserId)
+            //    return "شما مجاز به ویرایش این محصول نیستید";
 
             // اعمال تغییرات
             existingProduct.Update(request.Name, request.ProduceDate, request.ManufacturePhone, request.ManufactureEmail, request.IsAvailable);

@@ -32,7 +32,8 @@ namespace Application.NadinSoft.CommandHandler.UserCommandHandler
 
         public async Task<string> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
-            var user = _mapper.Map<ApplicationUser>(request);
+            var user = await _geTUserWhitByRepository.GetByNationalCode(request.NationalCode);
+            //var user = _mapper.Map<ApplicationUser>(request);
             if(user.Nationalcode != request.NationalCode)
             {
                 return "کاربر یافت نشد";
@@ -53,7 +54,7 @@ namespace Application.NadinSoft.CommandHandler.UserCommandHandler
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddHours(2),
+                expires: DateTime.UtcNow.AddDays(2),
                 signingCredentials: creds
             );
 

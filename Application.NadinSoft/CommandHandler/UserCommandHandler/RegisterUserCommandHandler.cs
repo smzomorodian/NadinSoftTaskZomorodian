@@ -3,25 +3,33 @@ using Domain.NadinSoft.Interface;
 using Domain.NadinSoft.Model;
 using MapsterMapper;
 using MediatR;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace Application.NadinSoft.CommandHandler.UserCommandHandler
 {
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, string>
     {
-        private readonly ICrudRepository<ApplicationUser> _crudRepository;
+        
+        private readonly Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> _userManager;
         private readonly IMapper _mapper;
-        public RegisterUserCommandHandler(ICrudRepository<ApplicationUser> crudRepository, IMapper mapper)
+        
+        public RegisterUserCommandHandler(Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> userManager, IMapper mapper)
         {
-            _crudRepository = crudRepository;
+            _userManager = userManager;
             _mapper = mapper;
+            
         }
 
         public async Task<string> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
             var user = _mapper.Map<ApplicationUser>(request);
-
-            await _crudRepository.Add(user);
-            await _crudRepository.SaveChange();
+            var result = await _userManager.CreateAsync(user, request.Password);
+            if (!result.Succeeded)
+            {
+                // میتونی خطاها رو برگردونی یا Exception بندازی
+                return string.Join(", ", result.Errors.Select(e => e.Description));
+            }
 
             return user.Id.ToString();
         }
