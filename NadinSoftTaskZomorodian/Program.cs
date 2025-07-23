@@ -85,7 +85,7 @@ namespace NadinSoftTaskZomorodian
 
             // Command and commandHandler
             builder.Services.AddScoped<IRequestHandler<RegisterUserCommand, string>, RegisterUserCommandHandler>();
-            //builder.Services.AddScoped<IRequestHandler<LoginUserCommand, string>, LoginUserCommandHandler>();
+            builder.Services.AddScoped<IRequestHandler<LoginUserCommand, string>, LoginUserCommandHandler>();
             builder.Services.AddScoped<IRequestHandler<AddProductCommand, string>, AddProductCommandHandler>();
             builder.Services.AddScoped<IRequestHandler<ShowAllProductQuery, List<Product>>, ShowAllProductQueryHandler>();
             builder.Services.AddScoped<IRequestHandler<ShowProductWhitUserIdQuery, List<Product>>, ShowProductWhitUserIdQueryHandler>();
@@ -95,7 +95,6 @@ namespace NadinSoftTaskZomorodian
             builder.Services.AddScoped<IGeTUserWhitByRepository, GeTUserWhitByRepository>();
             builder.Services.AddScoped<IGetProductRepository, GetProductRepository>();
 
-            builder.Services.AddValidatorsFromAssemblyContaining<RegisterUserCommandValidator>();
 
             // ثبت Validatorها
             builder.Services.AddValidatorsFromAssemblyContaining<RegisterUserCommandValidator>();
@@ -143,12 +142,19 @@ namespace NadinSoftTaskZomorodian
             });
 
 
+
             var app = builder.Build();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+            }
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<APPDbcontext>();
+                dbContext.Database.Migrate();  
             }
 
             app.UseHttpsRedirection();

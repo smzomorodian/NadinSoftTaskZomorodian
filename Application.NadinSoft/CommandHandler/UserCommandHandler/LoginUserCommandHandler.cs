@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Application.NadinSoft.CommandHandler.UserCommandHandler
 {
-    class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, string>
+    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, string>
     {
         private readonly IGeTUserWhitByRepository _geTUserWhitByRepository;
         private readonly IMapper _mapper;
