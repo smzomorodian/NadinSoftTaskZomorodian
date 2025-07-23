@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Domain.NadinSoft.Interface
 {
-    public interface IGetProductWhitUserIdRepository
+    public interface IGetProductRepository
     {
-        Task<List<Product>> GetProductsWhitUserId(string UserId);
+        Task<List<Product>> GetProducts(string UserId);
+        Task<Product> GetproductswhitProductId(Guid id);
     }
 }

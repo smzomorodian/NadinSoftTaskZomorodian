@@ -39,5 +39,13 @@ namespace NadinSoftTaskZomorodian.Controllers
             var result = await _mediator.Send(command);
             return Ok(result);
         }
+        //[Authorize]
+        [HttpDelete("Delete_Product")]
+        public async Task<IActionResult> DeleteProduct([FromQuery] DeletedProductDTO deletedProductDTO)
+        {
+            var command = deletedProductDTO.Adapt<DeletedProductCommand>();
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
     }
 }

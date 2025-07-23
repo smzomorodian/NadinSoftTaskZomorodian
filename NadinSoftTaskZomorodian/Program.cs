@@ -93,7 +93,7 @@ namespace NadinSoftTaskZomorodian
             // Repository
             builder.Services.AddScoped(typeof(ICrudRepository<>), typeof(CrudRepository<>));
             builder.Services.AddScoped<IGeTUserWhitByRepository, GeTUserWhitByRepository>();
-            builder.Services.AddScoped<IGetProductWhitUserIdRepository, GetProductWhitUserIdRepository>();
+            builder.Services.AddScoped<IGetProductRepository, GetProductRepository>();
 
             builder.Services.AddValidatorsFromAssemblyContaining<RegisterUserCommandValidator>();
 
@@ -102,6 +102,9 @@ namespace NadinSoftTaskZomorodian
 
             // ثبت Behavior برای اعتبارسنجی خودکار
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+            builder.Services.AddHttpContextAccessor();
+
             //------------------------
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
