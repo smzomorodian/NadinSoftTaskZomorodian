@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35825.156 d17.13
+VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NadinSoftTaskZomorodian", "NadinSoftTaskZomorodian\NadinSoftTaskZomorodian.csproj", "{EF43CA5F-6626-4465-92B9-0404D7F5C037}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.NadinSoft", "Application.NadinSoft\Application.NadinSoft.csproj", "{C6D29084-C4F9-4B8E-9003-D87A30278F45}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrustructure.NadinSoft", "Infrustructure.NadinSoft\Infrustructure.NadinSoft.csproj", "{6C217743-D3B2-48EF-95E0-4AFF8E7FE83C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Test\Tests.csproj", "{13FA6F0B-9330-4C4E-8422-5EF7056D0026}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6C217743-D3B2-48EF-95E0-4AFF8E7FE83C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C217743-D3B2-48EF-95E0-4AFF8E7FE83C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C217743-D3B2-48EF-95E0-4AFF8E7FE83C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13FA6F0B-9330-4C4E-8422-5EF7056D0026}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13FA6F0B-9330-4C4E-8422-5EF7056D0026}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13FA6F0B-9330-4C4E-8422-5EF7056D0026}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13FA6F0B-9330-4C4E-8422-5EF7056D0026}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
