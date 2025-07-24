@@ -6,7 +6,7 @@ namespace Domain.NadinSoft.Model
 {
     public class ApplicationUser : IdentityUser
     {
-        private ApplicationUser() { }
+        public ApplicationUser() { }
 
         public ApplicationUser(string nationalcode) : base(nationalcode)
         {

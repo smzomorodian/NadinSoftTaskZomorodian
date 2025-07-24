@@ -18,9 +18,9 @@ namespace Application.NadinSoft.Validators
                .Matches(@"^\d{10}$").WithMessage("کد ملی باید فقط شامل عدد باشد");
 
             RuleFor(x => x.Password)
-               .NotEmpty().WithMessage("رمز عبور الزامی است")
-               .MinimumLength(6).WithMessage("رمز عبور باید حداقل ۶ کاراکتر باشد")
-               .MaximumLength(100);
+                .NotEmpty().WithMessage("رمز عبور الزامی است")
+                .MinimumLength(6).WithMessage("رمز عبور باید حداقل ۶ کاراکتر باشد")
+                .MaximumLength(100);
 
 
         }

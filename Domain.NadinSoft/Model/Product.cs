@@ -37,7 +37,7 @@ namespace Domain.NadinSoft.Model
             ManufactureEmail = email;
             IsAvailable = isAvailable;
         }
-        private Product() { }
+        public Product() { }
 
         public void SetId(Guid id)
         {

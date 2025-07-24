@@ -39,12 +39,20 @@ namespace Application.NadinSoft.CommandHandler.UserCommandHandler
                 return "کاربر یافت نشد";
             }
 
+            var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
+            if (!result.Succeeded)
+            {
+                return "رمز عبور اشتباه است";
+            }
+
+
+
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim(ClaimTypes.Name, user.UserName),
                 new Claim("NationalCode", user.Nationalcode),
-                new Claim(ClaimTypes.Role, "User") // یا از UserManager نقش رو بخون
+                new Claim(ClaimTypes.Role, "User") 
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
