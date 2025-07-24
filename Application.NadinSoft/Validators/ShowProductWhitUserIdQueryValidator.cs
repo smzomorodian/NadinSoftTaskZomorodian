@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Application.NadinSoft.Validators
 {
-    public class ShowProductWhitUserIdQueryHandlerValidator : AbstractValidator<ShowProductWhitUserIdQuery>
+    public class ShowProductWhitUserIdQueryValidator : AbstractValidator<ShowProductWhitUserIdQuery>
     {
-        public ShowProductWhitUserIdQueryHandlerValidator()
+        public ShowProductWhitUserIdQueryValidator()
         {
             RuleFor(x => x.UserId)
                 .NotEmpty().WithMessage("Id نمی‌تواند خالی باشد.")

@@ -16,4 +16,5 @@ namespace Domain.NadinSoft.Model
         public string Nationalcode { get; private set; }
         public List<Product> Products { get; set; } = new List<Product>();
     }
+
 }

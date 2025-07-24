@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Application.NadinSoft.Validators
 {
-    public class DeletedProductCommandHandlerValidator : AbstractValidator<DeletedProductCommand>
+    public class DeletedProductCommandValidator : AbstractValidator<DeletedProductCommand>
     {
-        public DeletedProductCommandHandlerValidator()
+        public DeletedProductCommandValidator()
         {
             RuleFor(x => x.ProductId)
                 .NotEmpty().WithMessage("شناسه محصول نباید خالی باشد.")

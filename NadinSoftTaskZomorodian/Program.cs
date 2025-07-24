@@ -102,16 +102,11 @@ namespace NadinSoftTaskZomorodian
 
             builder.Services.AddValidatorsFromAssemblyContaining<AddProductCommandValidator>();
             builder.Services.AddValidatorsFromAssemblyContaining<UpdateProductCommandValidator>();
-            builder.Services.AddValidatorsFromAssemblyContaining<DeletedProductCommandHandlerValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<DeletedProductCommandValidator>();
 
-            builder.Services.AddValidatorsFromAssemblyContaining<LoginUserDTOValidation>();
-            builder.Services.AddValidatorsFromAssemblyContaining<RegisterUserDTOValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<ShowProductWhitUserIdQueryValidator>();
 
-            builder.Services.AddValidatorsFromAssemblyContaining<ShowProductWhitUserIdQueryHandlerValidator>();
 
-            builder.Services.AddValidatorsFromAssemblyContaining<AddProductDTOValidator>();
-            builder.Services.AddValidatorsFromAssemblyContaining<DeletedProductDTOValidator>();
-            builder.Services.AddValidatorsFromAssemblyContaining<UpdateProductDTOValidator>();
 
             // ثبت Behavior برای اعتبارسنجی خودکار
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));

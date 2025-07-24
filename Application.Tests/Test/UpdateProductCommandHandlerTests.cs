@@ -14,10 +14,10 @@ using Xunit;
 
 namespace Application.Tests.Test
 {
-    public class UpdateProductCommandHandlerValidator
+    public class UpdateProductCommandHandlerTests
     {
         [Fact]
-        public async Task UpdateProduct_Success()
+        public async Task UpdateProduct_Successul()
         {
             var command = new UpdateProductCommand
             {
@@ -47,6 +47,37 @@ namespace Application.Tests.Test
             var result = await handler.Handle(command, CancellationToken.None);
 
             Assert.Equal("ویرایش با موفقیت انجام شد", result);
+        }
+
+        [Fact]
+        public async Task UpdateProduct_UnSuccessful()
+        {
+            var command = new UpdateProductCommand
+            {
+                ProductId = Guid.NewGuid(),
+                Name = "NewName",
+                ProduceDate = DateTime.UtcNow,
+                ManufacturePhone = "09173115445",
+                ManufactureEmail = "new@gmail.com",
+                IsAvailable = true
+            };
+            var product = new Product("OldName", DateTime.UtcNow, "0917000000", "old@gmail.com", false, "user456");
+            product.SetId(command.ProductId);
+
+            var getRepoMock = new Mock<IProductReadonlyRepository>();
+            getRepoMock.Setup(r => r.GetById(command.ProductId)).ReturnsAsync(product);
+
+            var crudRepoMock = new Mock<IGenericRepository<Product>>();
+
+            var httpContextAccessorMock = new Mock<IHttpContextAccessor>();
+            var user = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.NameIdentifier, "user123") }));
+            httpContextAccessorMock.Setup(x => x.HttpContext).Returns(new DefaultHttpContext { User = user });
+
+            var handler = new UpdateProductCommandHandler(crudRepoMock.Object, null!, httpContextAccessorMock.Object, getRepoMock.Object);
+
+            var result = await handler.Handle(command, CancellationToken.None);
+
+            Assert.Equal("شما مجاز به ویرایش این محصول نیستید", result);
         }
     }
 }

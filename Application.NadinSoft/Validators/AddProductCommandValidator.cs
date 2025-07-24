@@ -25,9 +25,6 @@ namespace Application.NadinSoft.Validators
                 .Matches(@"^[^@\s]+@[^@\s]+\.[^@\s]+$")
                 .WithMessage("فرمت ایمیل نامعتبر است.");
 
-            //RuleFor(x => x.IsAvailable)
-            //    .NotEmpty().WithMessage("وضعیت موجود بودن محصول باید مشخص شود.");
-
             RuleFor(x => x.ProduceDate)
                 .NotEmpty().WithMessage("تاریخ تولید الزامی است.")
                 .LessThanOrEqualTo(DateTime.Now).WithMessage("تاریخ تولید نمی‌تواند در آینده باشد.");
