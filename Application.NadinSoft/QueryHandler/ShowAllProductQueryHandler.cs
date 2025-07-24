@@ -12,8 +12,8 @@ namespace Application.NadinSoft.QueryHandler
 {
     public class ShowAllProductQueryHandler : IRequestHandler<ShowAllProductQuery, List<Product>>
     {
-        private readonly ICrudRepository<Product> _crudRepository;
-        public ShowAllProductQueryHandler(ICrudRepository<Product> crudRepository)
+        private readonly IGenericRepository<Product> _crudRepository;
+        public ShowAllProductQueryHandler(IGenericRepository<Product> crudRepository)
         {
             _crudRepository = crudRepository;
         }

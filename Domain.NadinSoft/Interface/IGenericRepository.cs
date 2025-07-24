@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.NadinSoft.Interface
 {
-    public interface ICrudRepository<T> where T : class
+    public interface IGenericRepository<T> where T : class
     {
         Task<List<T>> GetAll();
         Task<string> Add(T enttity);

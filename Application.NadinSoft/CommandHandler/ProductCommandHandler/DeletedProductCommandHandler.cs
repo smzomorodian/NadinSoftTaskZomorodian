@@ -15,11 +15,11 @@ namespace Application.NadinSoft.CommandHandler.ProductCommandHandler
 {
     public class DeletedProductCommandHandler : IRequestHandler<DeletedProductCommand, bool>
     {
-        private readonly ICrudRepository<Product> _crudRepository;
-        private readonly IGetProductRepository _getProductRepository;
+        private readonly IGenericRepository<Product> _crudRepository;
+        private readonly IProductReadonlyRepository _getProductRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public DeletedProductCommandHandler(ICrudRepository<Product> crudRepository, IHttpContextAccessor httpContextAccessor, IGetProductRepository getProductRepository)
+        public DeletedProductCommandHandler(IGenericRepository<Product> crudRepository, IHttpContextAccessor httpContextAccessor, IProductReadonlyRepository getProductRepository)
         {
             _crudRepository = crudRepository;
             _httpContextAccessor = httpContextAccessor;
@@ -31,7 +31,7 @@ namespace Application.NadinSoft.CommandHandler.ProductCommandHandler
         {
             var currentUserId = _httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            var product = await _getProductRepository.GetproductswhitProductId(request.ProductId);
+            var product = await _getProductRepository.GetById(request.ProductId);
             if (product == null)
                 return false;
 

@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrustructure.NadinSoft.Repository
 {
-    public class CrudRepository<T> : ICrudRepository<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly APPDbcontext _aPPDbcontext;
+        private readonly NadinSoftDbcontext _aPPDbcontext;
 
-        public CrudRepository(APPDbcontext aPPDbcontext)
+        public GenericRepository(NadinSoftDbcontext aPPDbcontext)
         {
             _aPPDbcontext = aPPDbcontext;
         }
@@ -28,7 +28,9 @@ namespace Infrustructure.NadinSoft.Repository
 
         public async Task<List<T>> GetAll()
         {
-            return await _aPPDbcontext.Set<T>().ToListAsync();
+            return await _aPPDbcontext.Set<T>()
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         public async Task SaveChange()

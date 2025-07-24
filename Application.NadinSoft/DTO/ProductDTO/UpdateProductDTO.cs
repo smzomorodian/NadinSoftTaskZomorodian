@@ -15,4 +15,14 @@ namespace Application.NadinSoft.DTO.ProductDTO
         public string ManufactureEmail { get; set; }
         public bool IsAvailable { get; set; }
     }
+
+    public sealed record UpdateProduct
+        (
+            Guid ProductId,
+            string Name,
+            DateTime ProduceDate,
+            string ManufacturePhone,
+            string ManufactureEmail,
+            bool IsAvailable
+        );
 }

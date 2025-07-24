@@ -34,7 +34,7 @@ namespace NadinSoftTaskZomorodian
 
 
             //------------------------
-            builder.Services.AddDbContext<APPDbcontext>(options =>
+            builder.Services.AddDbContext<NadinSoftDbcontext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("NadinSoftDB"))
                  );
 
@@ -49,7 +49,7 @@ namespace NadinSoftTaskZomorodian
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.User.RequireUniqueEmail = true;
             })
-            .AddEntityFrameworkStores<APPDbcontext>()
+            .AddEntityFrameworkStores<NadinSoftDbcontext>()
             .AddDefaultTokenProviders();
 
             // بررسی تنظیمات JWT
@@ -91,9 +91,9 @@ namespace NadinSoftTaskZomorodian
             builder.Services.AddScoped<IRequestHandler<ShowProductWhitUserIdQuery, List<Product>>, ShowProductWhitUserIdQueryHandler>();
 
             // Repository
-            builder.Services.AddScoped(typeof(ICrudRepository<>), typeof(CrudRepository<>));
-            builder.Services.AddScoped<IGeTUserWhitByRepository, GeTUserWhitByRepository>();
-            builder.Services.AddScoped<IGetProductRepository, GetProductRepository>();
+            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            builder.Services.AddScoped<IUserReadonlyRepository, UserReadonlyRepository>();
+            builder.Services.AddScoped<IProductReadonlyRepository, GetProductReadonlyRepository>();
 
 
             // ثبت Validatorها
@@ -164,7 +164,7 @@ namespace NadinSoftTaskZomorodian
 
             using (var scope = app.Services.CreateScope())
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService<APPDbcontext>();
+                var dbContext = scope.ServiceProvider.GetRequiredService<NadinSoftDbcontext>();
                 dbContext.Database.Migrate();  
             }
 

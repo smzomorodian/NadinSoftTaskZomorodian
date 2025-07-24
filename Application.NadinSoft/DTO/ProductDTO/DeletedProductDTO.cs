@@ -10,4 +10,9 @@ namespace Application.NadinSoft.DTO.ProductDTO
     {
         public Guid ProductId { get; set; }
     }
+
+    public sealed record DeletedProducParameter
+        (
+            Guid ProductId
+        );
 }

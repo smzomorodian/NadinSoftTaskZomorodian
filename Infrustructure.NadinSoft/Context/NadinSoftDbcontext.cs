@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrustructure.NadinSoft.Context
 {
-    public class APPDbcontext : IdentityDbContext<ApplicationUser>
+    public class NadinSoftDbcontext : IdentityDbContext<ApplicationUser>
     {
-        protected APPDbcontext()
+        protected NadinSoftDbcontext()
         {
         }
-        public APPDbcontext(DbContextOptions<APPDbcontext> options)
+        public NadinSoftDbcontext(DbContextOptions<NadinSoftDbcontext> options)
             : base(options)
         {
         }
@@ -27,10 +27,10 @@ namespace Infrustructure.NadinSoft.Context
                 .IsRequired().HasMaxLength(20);
 
                 entity.Property(p => p.ManufactureEmail)
-                .IsRequired().HasMaxLength(100);
+                .IsRequired().HasMaxLength(50);
 
                 entity.Property(p => p.Name)
-                .IsRequired().HasMaxLength(200);
+                .IsRequired().HasMaxLength(30);
 
                 entity.HasIndex(p => new { p.ManufactureEmail, p.ProduceDate })
                 .IsUnique();

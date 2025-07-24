@@ -9,7 +9,6 @@ namespace Domain.NadinSoft.Model
 {
     public class Product
     {
-        public Product() { }
         public Product(string name, DateTime produceDate, string manufacturePhone, string manufactureEmail, bool isAvailable, string userId)
         {
             Id = Guid.NewGuid();
@@ -38,6 +37,13 @@ namespace Domain.NadinSoft.Model
             ManufactureEmail = email;
             IsAvailable = isAvailable;
         }
+        private Product() { }
+
+        public void SetId(Guid id)
+        {
+            Id = id;
+        }
+
     }
 }
 

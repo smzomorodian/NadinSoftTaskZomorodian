@@ -14,12 +14,12 @@ namespace Application.NadinSoft.CommandHandler.ProductCommandHandler
 {
     public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, string>
     {
-        private readonly ICrudRepository<Product> _crudRepository;
+        private readonly IGenericRepository<Product> _crudRepository;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IGetProductRepository _getProductRepository;
+        private readonly IProductReadonlyRepository _getProductRepository;
 
-        public UpdateProductCommandHandler(ICrudRepository<Product> crudRepository, IMapper mapper, IHttpContextAccessor httpContextAccessor, IGetProductRepository getProductRepository)
+        public UpdateProductCommandHandler(IGenericRepository<Product> crudRepository, IMapper mapper, IHttpContextAccessor httpContextAccessor, IProductReadonlyRepository getProductRepository)
         {
             _crudRepository = crudRepository;
             _mapper = mapper;
@@ -31,7 +31,7 @@ namespace Application.NadinSoft.CommandHandler.ProductCommandHandler
         {
 
             var currentUserId = _httpContextAccessor.HttpContext?.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-            var existingProduct = await _getProductRepository.GetproductswhitProductId(request.ProductId);
+            var existingProduct = await _getProductRepository.GetById(request.ProductId);
             if (existingProduct == null)
                 return "محصولی با این شناسه یافت نشد";
 

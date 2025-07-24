@@ -18,11 +18,11 @@ namespace Application.NadinSoft.CommandHandler.UserCommandHandler
 {
     public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, string>
     {
-        private readonly IGeTUserWhitByRepository _geTUserWhitByRepository;
+        private readonly IUserReadonlyRepository _geTUserWhitByRepository;
         private readonly IMapper _mapper;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IConfiguration _configuration;
-        public LoginUserCommandHandler(IGeTUserWhitByRepository geTUserWhitByRepository, IMapper mapper, SignInManager<ApplicationUser> signInManager, IConfiguration configuration)
+        public LoginUserCommandHandler(IUserReadonlyRepository geTUserWhitByRepository, IMapper mapper, SignInManager<ApplicationUser> signInManager, IConfiguration configuration)
         {
             _geTUserWhitByRepository = geTUserWhitByRepository;
             _mapper = mapper;
@@ -32,7 +32,7 @@ namespace Application.NadinSoft.CommandHandler.UserCommandHandler
 
         public async Task<string> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
-            var user = await _geTUserWhitByRepository.GetByNationalCode(request.NationalCode);
+            var user = await _geTUserWhitByRepository.GetByNationalCodeAsync(request.NationalCode);
             //var user = _mapper.Map<ApplicationUser>(request);
             if(user.Nationalcode != request.NationalCode)
             {

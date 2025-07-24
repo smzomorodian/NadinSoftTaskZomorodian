@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrustructure.NadinSoft.Migrations
 {
     [DbContext(typeof(NadinSoftDbcontext))]
-    [Migration("20250722131607_inittest")]
-    partial class inittest
+    [Migration("20250724083528_initEditEF")]
+    partial class initEditEF
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -101,9 +101,6 @@ namespace Infrustructure.NadinSoft.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("CreatedByUserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -123,15 +120,13 @@ namespace Infrustructure.NadinSoft.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<DateTime>("ProduceDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("CreatedByUserId");
 
@@ -278,15 +273,9 @@ namespace Infrustructure.NadinSoft.Migrations
                 {
                     b.HasOne("Domain.NadinSoft.Model.ApplicationUser", null)
                         .WithMany("Products")
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("Domain.NadinSoft.Model.ApplicationUser", "CreatedByUser")
-                        .WithMany()
                         .HasForeignKey("CreatedByUserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("CreatedByUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

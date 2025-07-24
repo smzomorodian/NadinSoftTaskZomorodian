@@ -11,4 +11,10 @@ namespace Application.NadinSoft.DTO.UserDTO
         public string Password { get; set; }
         public string NationalCode { get; set; }
     }
+
+    public sealed record LoginUserParameter
+        (
+            string Password,
+            string NationalCode
+        );
 }

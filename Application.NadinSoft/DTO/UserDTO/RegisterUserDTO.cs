@@ -14,4 +14,13 @@ namespace Application.NadinSoft.DTO.UserDTO
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
     }
+
+
+    public sealed record RegisterUserParameter(
+        string Nationalcode,
+        string UserName,
+        string Email,
+        string Password,
+        string PhoneNumber
+        );
 }

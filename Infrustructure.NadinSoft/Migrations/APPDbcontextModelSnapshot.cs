@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrustructure.NadinSoft.Migrations
 {
-    [DbContext(typeof(APPDbcontext))]
+    [DbContext(typeof(NadinSoftDbcontext))]
     partial class APPDbcontextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -107,8 +107,8 @@ namespace Infrustructure.NadinSoft.Migrations
 
                     b.Property<string>("ManufactureEmail")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ManufacturePhone")
                         .IsRequired()
@@ -117,8 +117,8 @@ namespace Infrustructure.NadinSoft.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<DateTime>("ProduceDate")
                         .HasColumnType("datetime2");

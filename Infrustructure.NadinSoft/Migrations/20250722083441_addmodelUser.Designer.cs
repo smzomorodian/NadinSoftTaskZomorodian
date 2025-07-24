@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrustructure.NadinSoft.Migrations
 {
-    [DbContext(typeof(APPDbcontext))]
+    [DbContext(typeof(NadinSoftDbcontext))]
     [Migration("20250722083441_addmodelUser")]
     partial class addmodelUser
     {

@@ -6,13 +6,14 @@ namespace Domain.NadinSoft.Model
 {
     public class ApplicationUser : IdentityUser
     {
-        public ApplicationUser() { }
-        public ApplicationUser(string nationalcode)
+        private ApplicationUser() { }
+
+        public ApplicationUser(string nationalcode) : base(nationalcode)
         {
             Nationalcode = nationalcode;
         }
 
-        public string Nationalcode { get;  set; }
-        public List<Product> Products { get;  set; } = new List<Product>();
+        public string Nationalcode { get; private set; }
+        public List<Product> Products { get; set; } = new List<Product>();
     }
 }

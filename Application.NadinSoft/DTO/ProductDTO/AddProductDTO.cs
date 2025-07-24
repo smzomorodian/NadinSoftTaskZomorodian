@@ -15,4 +15,15 @@ namespace Application.NadinSoft.DTO.ProductDTO
         public bool IsAvailable { get; set; }
         public string CreatedByUserId { get; set; }
     }
+
+    public sealed record AddProductParameter
+        (
+            string Name,
+            DateTime ProduceDate,
+            string ManufacturePhone,
+            string ManufactureEmail,
+            bool IsAvailable,
+            string CreatedByUserId
+        );
+
 }

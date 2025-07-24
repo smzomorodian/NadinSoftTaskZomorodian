@@ -17,15 +17,15 @@ namespace NadinSoftTaskZomorodian.Controllers
         {
             _mediator = mediator;
         }
-        [HttpGet("All_Product")]
+        [HttpGet("All")]
         public async Task<IActionResult> GEtAllProduct()
         {
             var result = await _mediator.Send(new ShowAllProductQuery());
             return Ok(result);
         }
 
-        [HttpGet("Get_Product_whitUserId")]
-        public async Task<IActionResult> GeProductwhitUserId(string UserId)
+        [HttpGet("Users/{UserId}")]
+        public async Task<IActionResult> GeProductwhitUserId([FromRoute] string UserId)
         {
             var command = new ShowProductWhitUserIdQuery { UserId = UserId };
             var result = await _mediator.Send(command);
@@ -33,27 +33,28 @@ namespace NadinSoftTaskZomorodian.Controllers
         }
 
         [Authorize]
-        [HttpPost("Add_product")]
-        public async Task<IActionResult> AddProduct([FromBody] AddProductDTO addProductDTO)
+        [HttpPost("Add")]
+        public async Task<IActionResult> AddProduct([FromBody] AddProductParameter addProductParameter)
         {
-            var command = addProductDTO.Adapt<AddProductCommand>();
-            var result = await _mediator.Send(command);
-            return Ok(result);
-        }
-        [Authorize]
-        [HttpDelete("Delete_Product")]
-        public async Task<IActionResult> DeleteProduct([FromQuery] DeletedProductDTO deletedProductDTO)
-        {
-            var command = deletedProductDTO.Adapt<DeletedProductCommand>();
+            var command = addProductParameter.Adapt<AddProductCommand>();
             var result = await _mediator.Send(command);
             return Ok(result);
         }
 
         [Authorize]
-        [HttpPut("Update_information_Product")]
-        public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductDTO updateProductDTO)
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> DeleteProduct([FromQuery] DeletedProducParameter  deletedProducParameter)
         {
-            var command = updateProductDTO.Adapt<UpdateProductCommand>();
+            var command = deletedProducParameter.Adapt<DeletedProductCommand>();
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [Authorize]
+        [HttpPut("Update_information")]
+        public async Task<IActionResult> UpdateProduct([FromBody] UpdateProduct updateProduct)
+        {
+            var command = updateProduct.Adapt<UpdateProductCommand>();
             var result = await _mediator.Send(command);
             return Ok(result);
         }

@@ -19,20 +19,20 @@ namespace NadinSoftTaskZomorodian.Controllers
             _mediator = mediator;
         }
         
-        [HttpPost("Register User")]
-        public async Task<IActionResult> RegisterUser([FromBody] RegisterUserDTO dto)
+        [HttpPost("Register")]
+        public async Task<IActionResult> RegisterUser([FromBody] RegisterUserParameter parameters)
         {
-            var command = dto.Adapt<RegisterUserCommand>();
+            var command = parameters.Adapt<RegisterUserCommand>();
 
             var result = await _mediator.Send(command);
 
             return Ok(result);
         }
 
-        [HttpPost("Login User")]
-        public async Task<IActionResult> LoginUser([FromBody] LoginUserDTO dto)
+        [HttpPost("Login")]
+        public async Task<IActionResult> LoginUser([FromBody] LoginUserParameter loginUserParameter)
         {
-            var command = dto.Adapt<LoginUserCommand>();
+            var command = loginUserParameter.Adapt<LoginUserCommand>();
 
             var result = await _mediator.Send(command);
 

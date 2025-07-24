@@ -13,10 +13,10 @@ namespace Application.NadinSoft.CommandHandler.ProductCommandHandler
 {
     public class AddProductCommandHandler : IRequestHandler<AddProductCommand, string>
     {
-        private ICrudRepository<Product> _crudRepository;
+        private IGenericRepository<Product> _crudRepository;
         private readonly IMapper _mapper;
 
-        public AddProductCommandHandler(ICrudRepository<Product> crudRepository, IMapper mapper)
+        public AddProductCommandHandler(IGenericRepository<Product> crudRepository, IMapper mapper)
         {
             _crudRepository = crudRepository;
             _mapper = mapper;
@@ -25,10 +25,18 @@ namespace Application.NadinSoft.CommandHandler.ProductCommandHandler
         public async Task<string> Handle(AddProductCommand request, CancellationToken cancellationToken)
         {
             var product = _mapper.Map<Product>(request);
-            await _crudRepository.Add(product);
-            await _crudRepository.SaveChange();
+            try 
+            {
+                await _crudRepository.Add(product);
+                await _crudRepository.SaveChange();
 
-            return product.Id.ToString();
+                return product.Id.ToString();
+            }
+            catch(Exception ex)
+            {
+                return "0";
+            }
+
         }
     }
 }
